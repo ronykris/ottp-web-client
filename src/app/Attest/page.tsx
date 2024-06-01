@@ -3,18 +3,20 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import Signin from '../components/Signin';
 import Add from '../components/Add';
+import { OttpClient } from '@ottp/sdk'
 
 const Attest: React.FC = () => {
-  const { fid } = useAuth()
+  const { walletAddr, fid } = useAuth()
   const [collaborators, setCollaborators] = useState("");
   const [contributions, setContributions] = useState("");
   const [project, setProject] = useState("");
+
   
   return (
     <div className="flex flex-col items-start justify-center px-4 py-8">
     <h1 className="text-5xl font-bold mb-4">Put your work onchain.</h1>
 
-    <form className="w-full max-w-lg">        
+    <div className="w-full max-w-lg">        
     <div className="mb-4">
         <label className="block text-black mb-2">
           Collaborators*
@@ -59,10 +61,10 @@ const Attest: React.FC = () => {
           />
       </div>
       <div className="flex justify-end space-y-4">
-      {fid === 0 ? <Signin /> : <Add />}
+      {fid === 0 ? <Signin /> : <Add collaborators={collaborators} contributions={contributions} project={project} />}
       </div>
             
-    </form>
+    </div>
     </div>
   );
 };
