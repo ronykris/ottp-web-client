@@ -11,6 +11,12 @@ const Attest: React.FC = () => {
   const [contributions, setContributions] = useState("");
   const [project, setProject] = useState("");
 
+  const resetFields = () => {
+    setCollaborators("");
+    setContributions("");
+    setProject("");
+  };
+
   
   return (
     <div className="flex flex-col items-start justify-center px-4 py-8">
@@ -61,7 +67,7 @@ const Attest: React.FC = () => {
           />
       </div>
       <div className="flex justify-end space-y-4">
-      {fid === 0 ? <Signin /> : <Add collaborators={collaborators} contributions={contributions} project={project} />}
+      {fid === 0 ? <Signin /> : <Add collaborators={collaborators} contributions={contributions} project={project} onResetFields={resetFields}/>}
       </div>
             
     </div>
